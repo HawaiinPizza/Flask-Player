@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;}
+.tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:0px;color:#444;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:15px 15px;word-break:normal;}
+.tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:0px;color:#fff;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:15px 15px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-uxja{border-color:#333333;color:#333333;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky">Album Cover</th>
+    <th class="tg-0pky">Title</th>
+    <th class="tg-0pky">Artist</th>
+    <th class="tg-0pky">Genre</th>
+    <th class="tg-0pky">Year</th>
+  </tr>
+</thead>
+        <tbody>
+        {% for album in albums %}
+          <tr>
+            <td class="tg-0pky"> <img src={{ album['Album_Cover'] }}> </td>
+            <td class="tg-0pky"> {{ album['Title'] }} </td>
+            <td class="tg-0pky"> {{ album['Artist'] }} </td>
+            <td class="tg-0pky"> {{ album['Genre'] }} </td>
+            <td class="tg-0pky"> {{ album['Year'] }} </td>
+          </tr>
+                {% endfor %}
+</tbody>
+</table>
+
+
+</body>
+</html>
