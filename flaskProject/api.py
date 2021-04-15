@@ -24,7 +24,7 @@ def genQuery(searchterm:str)->[dict]:
 def parseQuery(lst:[dict]):
     def extract(entry:dict):
         if(entry.get("collectionName")):
-            tmp = (album( entry["artistName"], entry["collectionName"], entry["primaryGenreName"], entry["previewUrl"], entry["artworkUrl100"], datetime.fromisoformat(entry["releaseDate"][0:-1])) )
+            tmp = (album( entry.get("artistName"), entry.get("collectionName"), entry.get("primaryGenreName"), entry.get("previewUrl"), entry.get("artworkUrl100"), datetime.fromisoformat(entry.get("releaseDate")[0:-1])) )
             return tmp
         else:
             return None

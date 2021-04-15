@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template, request, redirect
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, SelectField, RadioField, HiddenField, StringField, IntegerField, FloatField
 import boto3
@@ -7,7 +7,8 @@ import json
 from jinja2 import Environment, FileSystemLoader
 from boto3.dynamodb.conditions import Key
 from collections import Counter
-from api import getRecords
+from api import getRecords,album
+from datetime import datetime
 
 import createTable
 dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
@@ -30,8 +31,22 @@ def makeTable(table, primary):
 def home():
     return "king of the pirates!"
 
-@app.route('/additems')
-def add_items():pass
+@app.route('/additem')
+def add_items():
+    date = datetime.fromisoformat(request.args["date"])
+    album2=request.args["album"]
+    artist=request.args["artist"]
+    genre=request.args["genre"]
+    stream=request.args["stream"]
+    art=request.args["art"]
+    print()
+    print(album2, artist, genre, stream, art, date, sep="\n")
+    print()
+
+    data=[album(artist, album2, genre, stream, art, date)]
+    return redirect("/search")
+    # return render_template("table.j2", data=data)
+    # return render_template("table.j2")
 
 
 
@@ -41,14 +56,18 @@ def get_items():
         return render_template("table.j2")
     elif( request.method == "POST"):
         search = request.form["search"]
-        data = getRecords(search)
-        tmp = dict((album.album, album) for album in data).values()
-        return render_template("table.j2", data=tmp)
+        if(search !=""):
+            data = getRecords(search)
+            tmp = dict((album.album, album) for album in data).values()
+            return render_template("table.j2", data=tmp)
+        return render_template("table.j2")
+
 
 
 
 @app.route('/viewtable')
 def searchbar():
+    newEntry =  request.args["record"]
     # response = table.scan()
     # response = (response['Items'])
     # rendered = env.get_template("getitemtemplate.html").render(albums=response)
