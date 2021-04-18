@@ -42,7 +42,7 @@ def add_items():
     stream=request.args["stream"]
     art=request.args["art"]
     print()
-    table.put_item(Item={"Artist": artist, "Title":album2,"genre":genre, "stream":stream, "art":art, "date":date })
+    table.put_item(Item={"Artist": artist, "Album":album2,"genre":genre, "stream":stream, "art":art, "date":date })
     print(album2, artist, genre, stream, art, date, sep="\n")
     print()
 
@@ -51,6 +51,20 @@ def add_items():
     # return render_template("table.j2", data=data)
     # return render_template("table.j2")
 
+
+@app.route('/removeitem')
+def remove():
+    print(request.args)
+    # date = datetime.fromisoformat(request.args["date"])
+    date = request.args["date"]
+    album2=request.args["album"]
+    artist=request.args["artist"]
+    genre=request.args["genre"]
+    stream=request.args["stream"]
+    art=request.args["art"]
+    print("WOW")
+    table.delete_item(TableName="Albums", Key={"Album":album2, "Artist":artist})
+    return redirect("/viewtable")
 
 
 @app.route('/search', methods=["POST", "GET"])
@@ -75,7 +89,7 @@ def searchbar():
 # [{'Title': 'Naruto Uncut, Season 3, Vol. 2', 'date': '2008-10-13', 'stream': 'https://video-ssl.itunes.apple.com/itunes-assets/Video128/v4/39/e0/ee/39e0eedf-1198-c0b7-af62-a39f646bfab9/mzvf_22655529530827002.64│························
 # 0x480.h264lc.U.p.m4v', 'art': 'https://is5-ssl.mzstatic.com/image/thumb/Video/v4/35/1c/ca/351cca34-39f9-42d1-ec08-93f156cb4ed4/source/100x100bb.jpg', 'genre': 'Animation', 'Artist': 'Naruto'}]                  │························
     def extract(i):
-        return album(i["Artist"], i["Title"], i["genre"], i["stream"], i["art"], i["date"])
+        return album(i["Artist"], i["Album"], i["genre"], i["stream"], i["art"], i["date"])
     data = list(map(extract, response))
     # rendered = env.get_template("getitemtemplate.html").render(albums=response)
     # with open(f"./templates/table.html", "w") as f:

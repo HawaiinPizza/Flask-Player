@@ -8,21 +8,21 @@ if( "Albums" not in client.list_tables()["TableNames"]):
 
             KeySchema =[
                 {
-                    "AttributeName": "Artist",
+                    "AttributeName": "Album",
                     "KeyType": "HASH"
                 },
                 {
-                    "AttributeName": "Title",
+                    "AttributeName": "Artist",
                     "KeyType": "RANGE"
                 },
             ],
             AttributeDefinitions=[
                 {
-                    "AttributeName": "Artist",
+                    "AttributeName": "Album",
                     "AttributeType": "S"
                 },
                 {
-                    "AttributeName": "Title",
+                    "AttributeName": "Artist",
                     "AttributeType": "S"
                 }
             ],

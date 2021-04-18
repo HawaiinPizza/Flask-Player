@@ -18,6 +18,7 @@
 .inputbox{text-algin:center; width:100%;}
                 </style>
 
+                <h1> Albums to listen to </h1>
                 <form method="post" action="/search">
                         <input type="text" class="inputbox" name="search"><br><br>
                 </form>
@@ -37,7 +38,7 @@
                                 {% for item in data %}
                                 <tr>
                                         <td class="tg-0pky">  
-                                                <a href="/remove?&album={{item.album}}&artist={{item.artist}}&genre={{item.genre}}&date={{item.date.strftime('%Y-%m-%d')}}&art={{item.artwork}}&stream={{item.stream}} ">
+                                                <a href="/removeitem?&album={{item.album}}&artist={{item.artist}}&genre={{item.genre}}&date={{item.date}}&art={{item.artwork}}&stream={{item.stream}} ">
                                                         <img src="{{item.artwork}}"> 
                                                 </a>
                                         </td>
