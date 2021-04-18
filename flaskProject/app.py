@@ -29,7 +29,7 @@ def makeTable(table, primary):
 
 @app.route("/")
 def home():
-    return "king of the pirates!"
+    return redirect("/viewtable")
 
 @app.route('/additem')
 def add_items():
@@ -86,8 +86,6 @@ def get_items():
 def searchbar():
     response = table.scan()
     response = (response['Items'])
-# [{'Title': 'Naruto Uncut, Season 3, Vol. 2', 'date': '2008-10-13', 'stream': 'https://video-ssl.itunes.apple.com/itunes-assets/Video128/v4/39/e0/ee/39e0eedf-1198-c0b7-af62-a39f646bfab9/mzvf_22655529530827002.64│························
-# 0x480.h264lc.U.p.m4v', 'art': 'https://is5-ssl.mzstatic.com/image/thumb/Video/v4/35/1c/ca/351cca34-39f9-42d1-ec08-93f156cb4ed4/source/100x100bb.jpg', 'genre': 'Animation', 'Artist': 'Naruto'}]                  │························
     def extract(i):
         return album(i["Artist"], i["Album"], i["genre"], i["stream"], i["art"], i["date"])
     data = list(map(extract, response))
