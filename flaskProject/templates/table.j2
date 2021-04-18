@@ -7,7 +7,7 @@
         <body>
 
                 <style type="text/css">
-.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;margin:0px auto;}
+.tg  {border-collapse:collapse;border-color:#9ABAD9;border-spacing:0;margin:0px auto; width:100%}
 .tg td{background-color:#EBF5FF;border-color:#9ABAD9;border-style:solid;border-width:0px;color:#444;
         font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:15px 15px;word-break:normal;}
 .tg th{background-color:#409cff;border-color:#9ABAD9;border-style:solid;border-width:0px;color:#fff;
@@ -52,7 +52,7 @@
                                         <td class="tg-0pky"> {{item.album}}     </td>
                                         <td class="tg-0pky"> {{item.artist}}    </td>
                                         <td class="tg-0pky"> {{item.genre}}     </td>
-                                        <td class="tg-0pky"> {{item.date}}      </td>
+                                        <td class="tg-0pky"> {{item.date.strftime("%Y-%m-%d")}}      </td>
                                         <td class="tg-0pky"> 
                                                 <audio controls>
                                                         <source src="{{item.stream}}" type="audio/x-m4a">
