@@ -20,7 +20,7 @@ env = Environment(loader=fileLoader)
 
 app = Flask(__name__)
 def makeTable(table, primary):
-    """Check if the table exist, and if not then make it"""
+    """BASED"""
     client = boto3.client("dynamodb")
     tables =  client.list_tables()
     # if(table not in tables):
